@@ -34,6 +34,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    cloudcontrol-rails (0.0.6)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -58,6 +59,8 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.5)
     multi_json (1.10.1)
+    pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -123,9 +126,11 @@ PLATFORMS
 
 DEPENDENCIES
   carrierwave
+  cloudcontrol-rails (= 0.0.6)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rails (= 4.1.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
