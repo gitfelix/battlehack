@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #map-canvas {
-  width: 400px;
-  height: 400px;
+  float: right;
+  width: 65%;
+  height: 700px;
+}
+
+.things_index {
+  float: left;
+  width: 30%;
 }

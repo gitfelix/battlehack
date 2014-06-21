@@ -3,38 +3,38 @@
 
 
 <script>
-  start_map()
+  start_map();
 </script>
-<div id="map-canvas"> </div>
-
-<script>
-
-  // first = { name: "betahaus", place: "berlin"}
-  // second = {name: "shop", place: "london"}
-
-    things = [
-        <% @things.each do |thing| %>
-            {
-              name: "<%= thing.name %>",
-              lat: "<%= thing.lat %>",
-              lng: "<%= thing.lng %>",
-            },
-
-
-        <% end %>
-    ]
-
-
-
-</script>
-
-<br>
 
 <form action="<%= things_path %>" method="get">
   <label for="">Search for</label>
   <input name="searchterm" type="text" value="<%= @searchterm %>" >
   <input type="submit">
 </form>
+
+<div id="map-canvas"> </div>
+
+<script>
+
+  // first = { name: "betahaus", place: "berlin"}
+  // second = {name: "shop", place: "london"}
+    things = [
+        <% @things.each do |thing| %>
+            {
+              name: "<%= thing.name %>",
+              lat: "<%= thing.lat %>",
+              lng: "<%= thing.lng %>",
+              imgpath: "<%= thing.image %>",
+              url: "<%= thing_path(thing) %>"
+            },
+
+
+        <% end %>
+    ]
+</script>
+
+<br>
+
 
 <% if @things.empty? %>
   <%= "didn't find anything" %>
@@ -45,7 +45,7 @@
     <%= f.submit %>
   <% end %>
 <% else %>
-  <table>
+  <table class="things_index">
     <thead>
       <tr>
        <th>Name</th>
@@ -74,3 +74,4 @@
 <br>
 
 <%= link_to 'New Thing', new_thing_path %>
+
