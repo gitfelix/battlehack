@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621194940) do
+ActiveRecord::Schema.define(version: 20140621210809) do
 
   create_table "bounties", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "found",      default: false
   end
 
   create_table "test_pictures", force: true do |t|
