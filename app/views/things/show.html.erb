@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @thing.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @thing.description %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @thing.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @thing.lng %>
+</p>
+
+<p>
+  <strong>Image:</strong> <br>
+  <img src=<%= @thing.image %> style="max-width: 400px;" />
+</p>
+
+<%= link_to 'Edit', edit_thing_path(@thing) %> |
+<%= link_to 'Back', things_path %>
