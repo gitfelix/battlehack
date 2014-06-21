@@ -1,5 +1,32 @@
 <h1>Listing things</h1>
 
+<script>
+  start_map()
+</script>
+<div id="map-canvas"> </div>
+
+<script>
+
+  // first = { name: "betahaus", place: "berlin"}
+  // second = {name: "shop", place: "london"}
+
+    things = [
+        <% @things.each do |thing| %>
+            {
+              name: "<%= thing.name %>",
+              lat: "<%= thing.lat %>",
+              lng: "<%= thing.lng %>",
+
+            },
+
+
+        <% end %>
+    ]
+
+
+
+</script>
+
 <table>
   <thead>
     <tr>
