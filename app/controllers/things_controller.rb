@@ -4,7 +4,13 @@ class ThingsController < ApplicationController
   # GET /things
   # GET /things.json
   def index
-    @things = Thing.all
+
+    @things = if params[:searchterm]
+      @searchterm = params[:searchterm]
+      Thing.where("name LIKE ?", "%#{@searchterm}%")
+    else
+      Thing.all
+    end
   end
 
   # GET /things/1

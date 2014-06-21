@@ -1,5 +1,7 @@
 <h1>Listing things</h1>
 
+
+
 <script>
   start_map()
 </script>
@@ -16,7 +18,6 @@
               name: "<%= thing.name %>",
               lat: "<%= thing.lat %>",
               lng: "<%= thing.lng %>",
-
             },
 
 
@@ -27,34 +28,49 @@
 
 </script>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<br>
 
-  <tbody>
-    <% @things.each do |thing| %>
+<form action="<%= things_path %>" method="get">
+  <label for="">Search for</label>
+  <input name="searchterm" type="text" value="<%= @searchterm %>" >
+  <input type="submit">
+</form>
+
+<% if @things.empty? %>
+  <%= "didn't find anything" %>
+  <%= form_for(Bounty.new(name: @searchterm)) do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <table>
+    <thead>
       <tr>
-        <td><%= thing.name %></td>
-        <td><%= thing.description %></td>
-        <td><%= thing.lat %></td>
-        <td><%= thing.lng %></td>
-        <td><%= thing.image %></td>
-        <td><%= link_to 'Show', thing %></td>
-        <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
-        <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+       <th>Name</th>
+       <th>Description</th>
 
+
+
+        <th colspan="3"></th>
+     </tr>
+   </thead>
+
+    <tbody>
+      <% @things.each do |thing| %>
+        <tr>
+          <td><%= thing.name %></td>
+          <td><%= thing.description %></td>
+
+          <td><%= link_to 'Show', thing %></td>
+          <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
+          <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <%= link_to 'New Thing', new_thing_path %>

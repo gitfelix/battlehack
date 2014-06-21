@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :bounties
+
   resources :things
 
   resources :test_pictures

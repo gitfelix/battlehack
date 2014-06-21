@@ -6,16 +6,16 @@ function initialize() {
      map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
 
-     things.forEach(function(place){
-      add_marker(place.place, place.name)
+     things.forEach(function(thing){
+      console.log(thing.lat)
+      console.log(thing.lng)
+      position = new google.maps.LatLng(thing.lat,thing.lng)
+      add_marker(position, thing.name)
 
 
      })
 
     set_center()
-     // position = 
-
-     // marker = add_marker(new google.maps.LatLng(52,13), "berlin")
 }
 
 
