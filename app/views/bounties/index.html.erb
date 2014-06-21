@@ -5,6 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th> Found? </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +15,12 @@
       <tr>
         <td><%= bounty.name %></td>
         <td><%= bounty.email %></td>
-        <td><%= link_to 'Show', bounty %></td>
-        <td><%= link_to 'Edit', edit_bounty_path(bounty) %></td>
-        <td><%= link_to 'Destroy', bounty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= bounty.found? %></td>
+        <% if bounty.found? %>
+         <td> <%= link_to 'Show Where I can find this thing', things_path(searchterm: bounty.name) %> </td>
+         <% else %>
+         <td> <%= link_to 'I found this thing!', new_thing_path(thing: {name: bounty.name}) %> </td>
+         <% end %>
       </tr>
     <% end %>
   </tbody>

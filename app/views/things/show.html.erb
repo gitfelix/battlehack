@@ -24,6 +24,27 @@
   <strong>Image:</strong> <br>
   <img src=<%= @thing.image %> style="max-width: 400px;" />
 </p>
+<script>
+  start_map()
+</script>
+
+<div id="map-canvas"> </div>
+
+<script>
+
+ things = [
+        
+            {
+              name: "<%= @thing.name %>",
+              lat: "<%= @thing.lat %>",
+              lng: "<%= @thing.lng %>",
+            },
+
+
+    ]
+
+
+</script>
 
 <%= link_to 'Edit', edit_thing_path(@thing) %> |
 <%= link_to 'Back', things_path %>

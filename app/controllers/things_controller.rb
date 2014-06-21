@@ -20,7 +20,11 @@ class ThingsController < ApplicationController
 
   # GET /things/new
   def new
-    @thing = Thing.new
+    @thing = if params[:thing]
+      Thing.new(thing_params)
+    else
+      Thing.new
+    end
   end
 
   # GET /things/1/edit
