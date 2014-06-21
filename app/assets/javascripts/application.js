@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function setToCurrentPosition() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      currentLocation = console.log(position.coords.latitude,position.coords.longitude);
+    }, null);
+  }
+}
