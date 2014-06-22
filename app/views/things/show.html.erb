@@ -2,7 +2,15 @@
   start_map()
 </script>
 
-<div id="map-canvas" class="maplg"> </div>
+<div id="map-canvas" class="map maplg hidden-sm hidden-xs"> </div>
+
+<div class="index hidden">
+  <div class="row">
+      <div class="col-xs-12">
+        <div id="map-canvas-sm" class="map"> </div>
+      </div>
+    </div>
+</div>
 
 <div class="index">
   <script>
@@ -49,7 +57,7 @@
   </p>
 
   <p class="thingimage">
-    <img src=<%= @thing.image %> style="max-width: 400px;" />
+    <img src="<%= @thing.image %>" style="max-width: 400px;" />
   </p>
   </div>
 </div> <!-- end index -->
