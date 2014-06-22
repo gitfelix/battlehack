@@ -1,19 +1,103 @@
 @import 'variables'
 @import 'bootstrap'
 
+// Many thanks to SubtlePatterns.com and their designers.
+// The background pattern is CC BY-SA 3.0
+
+.navbar-default
+  background: url(/img/background.png) 0 0 repeat
+
+.navbar-right
+  text-transform:   uppercase
+  color:            $gray-dark
+
+  li.separator
+    a 
+      color:        $brand-primary
+      &:hover,
+      &:active
+        color:      $brand-primary  
+
+  li.primary
+    a
+      color:        $brand-primary
+      &:hover,
+      &:active
+        color:      darken($brand-primary, 15%)
+
 .logo
   padding-left: 10px
 
 img.logo
-  width: 240px
+  width: 200px
+  margin-top: -10px
 
 .map
   float: right
   width: 65%
-  height: 600px
+  height: 650px
   padding: 0 1%
 
 .index
   float: left
   width: 33%
   padding-left: 2%
+
+.table
+  max-width:    100%  
+
+.back   
+  margin-top:       2em
+  margin-bottom:    7em
+  
+// Search
+
+input,
+textarea,
+input[type="file"]
+  border-radius:    2px
+  border:           1px solid $gray-light
+  
+  &:focus,
+  &:active
+    border-color:   $gray
+    outline-color:  $white
+    +box-shadow($shadow1)
+
+input.searchform
+  width:            100%
+  padding:          6px 10px
+  font-size:        24px    
+  margin-bottom:    24px
+
+// New
+.field 
+  margin:           1.6em 0
+
+.actions
+  margin:           2em 0
+
+#thing_name,
+#thing_description 
+  padding:          8px 10px  
+  width:            100%
+
+input[type="submit"]
+  background:       $brand-primary
+  color:            $white
+  font-weight:      700
+  padding:          6px 12px
+
+
+
+// Footer
+.block
+  overflow:         hidden
+
+.footer 
+  margin:           3em 0 1em
+  padding-top:      6px
+  font-size:        $font-size-small  
+  text-align:       center
+  border-top:       1px solid $gray-light
+  text-transform:   uppercase

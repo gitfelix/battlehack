@@ -4,6 +4,7 @@ class BountiesController < ApplicationController
   # GET /bounties
   # GET /bounties.json
   def index
+    @grouped_bounties = Bounty.all.group(:name).count
     @bounties = Bounty.all
   end
 

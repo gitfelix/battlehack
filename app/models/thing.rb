@@ -1,6 +1,10 @@
 class Thing < ActiveRecord::Base
-   mount_uploader :image, ImageUploader
-   after_create :check_for_bounties
+  validates_presence_of name
+
+  mount_uploader :image, ImageUploader
+  after_create :check_for_bounties
+
+
 
   def check_for_bounties
     Bounty.where(name: name, found: false).each do |bounty|
