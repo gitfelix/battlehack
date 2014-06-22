@@ -3,9 +3,9 @@
   start_map();
 </script>
 
-<div id="map-canvas" class="map"> </div>
+<div id="map-canvas" class="map maplg hidden-sm hidden-xs"> </div>
 
-<div class="index">
+<div class="index hidden-sm hidden-xs">
   <div class="results">
     <form action="<%= things_path %>" method="get">
       <input name="searchterm" placeholder="Search..." class="searchform" type="text" value="<%= @searchterm %>" >
@@ -38,7 +38,7 @@
     <% end %>
   <% else %>
 
-  <div class="table-responsive">
+  <div class="table-responsive hidden-sm hidden-xs">
     <table class="table table-striped">
         <thead>
           <tr>
@@ -59,6 +59,76 @@
         </tbody>
     </table>
   </div>
-  <% end %>
 
-</div>  <!-- end things -->
+  <% end %>
+</div>  <!-- end index -->
+
+<div class="mobile hidden-md hidden-lg">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 cta">
+        <%= link_to 'Add a new hobnob', new_thing_path, {class: 'btnnew'} %>
+      </div>
+    </div> <!-- end row -->
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="map-canvas-sm" class="map"> </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+          <script>
+              things = [
+                  <% @things.each do |thing| %>
+                      {
+                        name: "<%= thing.name %>",
+                        lat: "<%= thing.lat %>",
+                        lng: "<%= thing.lng %>",
+                        imgpath: "<%= thing.image %>",
+                        url: "<%= thing_path(thing) %>"
+                      },
+                  <% end %>
+              ]
+            </script>
+
+            <% if @things.empty? %>
+              <%= "None found - yet! Create a bounty for hunters!" %>
+              <%= form_for(Bounty.new(name: @searchterm)) do |f| %>
+                <%= f.hidden_field :name %>
+                <%= f.label :email %><br>
+                <%= f.text_field :email %>
+                <%= f.submit %>
+              <% end %>
+            <% else %>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Store</th>
+                    <th>Price</th>
+                 </tr>
+               </thead>
+
+                <tbody>
+                  <% @things.each do |thing| %>
+                    <tr>
+                      <td><%= link_to thing.name, thing %></td>
+                      <td><%= thing.description %></td>
+                      <td><%= 'Price' %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div> <!-- end table -->
+      </div> <!-- end 12 -->
+    </div> <!-- end row -->    
+  </div> <!-- end container -->  
+
+        <% end %>  
+  
+</div> <!-- end mobile -->
