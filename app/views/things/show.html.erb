@@ -19,37 +19,62 @@
 
   </script>
 
-  <div class="things_index">
-  <p class="thing_name">
-    <%= @thing.name %>
-  </p>
 
-  <p class="description">
-    <%= @thing.description %>
-  </p>
+<div id="map-canvas" class="map maplg hidden-sm hidden-xs"> </div>
 
-  <p class="hidden">
-    <strong>Lat:</strong>
-    <%= @thing.lat %>
-  </p>
+<script>
 
-  <p class="hidden">
-    <strong>Lng:</strong>
-    <%= @thing.lng %>
-  </p>
+ things = [
+            {
+              name: "<%= @thing.name %>",
+              lat: "<%= @thing.lat %>",
+              lng: "<%= @thing.lng %>",
+              imgpath: "<%= @thing.image %>",
+              url: "<%= thing_path(@thing) %>"
+            },
+    ]
 
-  <p>
-    <strong>location:</strong>
-    <%= @thing.location %>
-  </p>
 
-  <p>
-    <strong>price:</strong>
-    <%= @thing.price %>
-  </p>
+</script>
 
-  <p class="thingimage">
-    <img src=<%= @thing.image %> style="max-width: 400px;" />
-  </p>
-  </div>
-</div> <!-- end index -->
+<div class="things_index">
+<p>
+  <strong>Name:</strong>
+  <%= @thing.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @thing.description %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @thing.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @thing.lng %>
+</p>
+
+<p>
+  <strong>location:</strong>
+  <%= @thing.location %>
+</p>
+
+<p>
+  <strong>price:</strong>
+  <%= @thing.price %>
+</p>
+
+<p>
+  <strong>Image:</strong> <br>
+  <img src=<%= @thing.image %> style="max-width: 400px;" />
+</p>
+</div>
+
+
+<%= link_to 'Edit', edit_thing_path(@thing) %> |
+<%= link_to 'Back', things_path %>
+>>>>>>> 14c0f3723f0d46f75284f534c9f093bfbb5fe76f
