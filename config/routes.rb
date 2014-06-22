@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'inbound_mail/receive'
+
   resources :bounties
 
   resources :things
