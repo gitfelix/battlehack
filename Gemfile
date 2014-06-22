@@ -26,6 +26,7 @@ gem 'spring',        group: :development
 
 gem 'carrierwave'
 
+gem 'exifr'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,7 +38,7 @@ gem 'carrierwave'
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
@@ -49,4 +50,5 @@ end
 group :production do
   gem 'pg'
   gem 'cloudcontrol-rails', '0.0.6'
+  gem 'rails_12factor'
 end
