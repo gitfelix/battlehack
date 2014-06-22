@@ -43,7 +43,6 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Store</th>
             <th>Price</th>
          </tr>
        </thead>
@@ -52,7 +51,6 @@
           <% @things.each do |thing| %>
             <tr>
               <td><%= link_to thing.name, thing %></td>
-              <td><%= thing.description %></td>
               <td><%= number_to_currency(thing.price, unit: "€")%></td>
             </tr>
           <% end %>
