@@ -1,23 +1,20 @@
-<h1>Listing things</h1>
-
-
 
 <script>
   start_map();
 </script>
 
-<form action="<%= things_path %>" method="get">
-  <label for="">Search for</label>
-  <input name="searchterm" type="text" value="<%= @searchterm %>" >
-  <input type="submit">
-</form>
+<div id="map-canvas" class="map"> </div>
 
-<div id="map-canvas"> </div>
+<div class="index">
+  <div class="results">
+    <form action="<%= things_path %>" method="get">
+      <label for="">Search for</label>
+      <input name="searchterm" type="text" value="<%= @searchterm %>" >
+      <input type="submit">
+    </form>
+  </div>
 
-<script>
-
-  // first = { name: "betahaus", place: "berlin"}
-  // second = {name: "shop", place: "london"}
+  <script>
     things = [
         <% @things.each do |thing| %>
             {
@@ -27,54 +24,42 @@
               imgpath: "<%= thing.image %>",
               url: "<%= thing_path(thing) %>"
             },
-
-
         <% end %>
     ]
-</script>
+  </script>
 
-<br>
+  <% if @things.empty? %>
+    <%= "None found - yet! Create a bounty for hunters!" %>
+    <%= form_for(Bounty.new(name: @searchterm)) do |f| %>
+      <%= f.hidden_field :name %>
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+      <%= f.submit %>
+    <% end %>
+  <% else %>
 
-
-<% if @things.empty? %>
-  <%= "didn't find anything" %>
-  <%= form_for(Bounty.new(name: @searchterm)) do |f| %>
-    <%= f.hidden_field :name %>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-    <%= f.submit %>
-  <% end %>
-<% else %>
-  <table class="things_index">
-    <thead>
-      <tr>
-       <th>Name</th>
-       <th>Description</th>
-
-
-
-        <th colspan="3"></th>
-     </tr>
-   </thead>
-
-    <tbody>
-      <% @things.each do |thing| %>
+  <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= thing.name %></td>
-          <td><%= thing.description %></td>
+          <th>Name</th>
+          <th>Store</th>
+          <th>Price</th>
+       </tr>
+     </thead>
 
-          <td><%= link_to 'Show', thing %></td>
-          <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
-          <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
+      <tbody>
+        <% @things.each do |thing| %>
+          <tr>
+            <td><%= link_to thing.name, thing %></td>
+            <td><%= thing.description %></td>
+            <td><%= 'Price' %></td>
+          </tr>
+        <% end %>
+      </tbody>
   </table>
-<% end %>
-<br>
 
-<%= link_to 'New Thing', new_thing_path %>
+  <% end %>
 
-
-<%= link_to 'Bounties', bounties_path %>
-
+  <%= link_to 'New Thing', new_thing_path %>
+  <%= link_to 'Bounties', bounties_path %>
+</div>  <!-- end things -->
