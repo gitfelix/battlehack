@@ -53,7 +53,7 @@
             <tr>
               <td><%= link_to thing.name, thing %></td>
               <td><%= thing.description %></td>
-              <td><%= 'Price' %></td>
+              <td><%= number_to_currency(thing.price, unit: "€")%></td>
             </tr>
           <% end %>
         </tbody>

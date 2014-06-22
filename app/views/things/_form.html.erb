@@ -21,6 +21,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
     <%= radio_button_tag :location, "here", true%>
     <%= label_tag :location_here, "here" %><br>
     <%= radio_button_tag :location, "elsewhere" %>  
