@@ -34,7 +34,7 @@
   </p>
 
   <p class="description">
-    <%= @thing.description %>
+    Available at <%= @thing.description %>
   </p>
 
   <p class="hidden">
@@ -48,13 +48,13 @@
   </p>
 
   <p>
-    <strong>location:</strong>
+    <strong>Location:</strong>
     <%= @thing.location %>
   </p>
 
   <p>
-    <strong>price:</strong>
-    <%= @thing.price %>
+    <strong>Price:</strong>
+    <%= number_to_currency(@thing.price, unit: "€") %>
   </p>
 
   <p class="thingimage">
