@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1> Somebody found the <%= @bounty.name %> you were looking for!</h1>
+    <p>
+        To check out the Thing you were looking for <%= link_to 'click here!', thing_url(@thing) %>
+    </p>
+    <p>Thanks for using HobNob and have a great day!</p>
+  </body>
+</html>

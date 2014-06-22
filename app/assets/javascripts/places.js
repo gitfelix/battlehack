@@ -12,7 +12,13 @@ function initialize() {
       add_marker(position, thing.name, thing.imgpath, thing.url, null)
      })
 
-    set_center()
+    if (things.length == 1) {
+        set_center_on_thing(things[0])
+    }
+      else {
+        set_center()
+      }
+    console.log("yo")
 }
 
 
@@ -63,6 +69,14 @@ function set_center() {
     // }
     null);
   }
+}
+
+function set_center_on_thing(thing){
+
+  initialLocation = new google.maps.LatLng(thing.lat,thing.lng);
+  map.setCenter(initialLocation);
+  console.log("on_thing")
+
 }
 
 // $(document).on("page:change", function(){
