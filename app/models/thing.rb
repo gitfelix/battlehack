@@ -1,5 +1,5 @@
 class Thing < ActiveRecord::Base
-  validates_presence_of name
+  validates_presence_of :name
 
   mount_uploader :image, ImageUploader
   after_create :check_for_bounties

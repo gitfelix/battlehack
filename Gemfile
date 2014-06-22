@@ -24,6 +24,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'syntax'
+  gem 'factory_girl_rails'
+  gem 'email_spec', require: false
+  gem "webrat"
 end
 
 group :production do
