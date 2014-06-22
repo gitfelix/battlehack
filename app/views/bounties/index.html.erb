@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <h4> Most popular bounties </h4>
       <table class="table table-striped">
         <thead>
@@ -27,7 +27,7 @@
   </div> <!-- end row -->
 
   <div class="row">
-    <div class="col-md-6 bounties">
+    <div class="col-md-12 bounties">
       <h4> All bounties </h4>
       <table  class="table table-striped">
         <thead>
@@ -35,7 +35,7 @@
             <th>Name</th>
             <th>Email</th>
             <th> Found? </th>
-            <th> A hobnob for </th>
+            <th> Added </th>
             <th></th>
           </tr>
         </thead>
@@ -51,7 +51,7 @@
                 <td></td>
                 <td> <%= link_to 'Show Where I can find this thing', things_path(searchterm: bounty.name) %> </td>
               <% else %>
-                <td><%= time_ago_in_words(bounty.created_at) %>
+                <td><%= time_ago_in_words(bounty.created_at) + ' ago' %>
                 <td> <%= link_to 'Found it!', new_thing_path(thing: {name: bounty.name}), {class: 'found'} %> </td>
                <% end %>
             </tr>
