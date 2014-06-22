@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :test_pictures
 
   root 'things#index'
+
+  get 'payment_test/create_paypal_bounty'
+
+  get 'payment_test/pay_bounty'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

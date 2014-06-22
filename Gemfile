@@ -16,6 +16,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'carrierwave'
 
+gem 'paypal-sdk-adaptivepayments'
+
 gem 'exifr'
 
 gem 'debugger', group: [:development, :test]
