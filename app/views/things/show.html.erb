@@ -4,19 +4,18 @@
   start_map()
 </script>
 
-<div id="map-canvas"> </div>
+<div id="map-canvas" class="map"> </div>
 
 <script>
 
  things = [
-        
             {
               name: "<%= @thing.name %>",
               lat: "<%= @thing.lat %>",
               lng: "<%= @thing.lng %>",
+              imgpath: "<%= @thing.image %>",
+              url: "<%= thing_path(@thing) %>"
             },
-
-
     ]
 
 
