@@ -1,60 +1,65 @@
-<h2> Most popular bounties </h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>How many people want this?</th>
-      <th> Found? </th>
-    </tr>
-  </thead>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h4> Most popular bounties </h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>How many people want this?</th>
+            <th> Found? </th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @grouped_bounties.first(5).each do |name,count| %>
-      <tr>
-        <td><%= name %></td>
-        <td><%= count %></td>
-        <td><%= link_to 'I found this thing!', new_thing_path(thing: {name: name}) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+        <tbody>
+          <% @grouped_bounties.first(5).each do |name,count| %>
+            <tr>
+              <td><%= name %></td>
+              <td><%= count %></td>
+              <td><%= link_to 'Found it!', new_thing_path(thing: {name: name}), {class: 'found'} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-md-6 bounties">
+      <h4> All open bounties </h4>
+      <table  class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th> Found? </th>
+            <th> Looking since </th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @bounties.each do |bounty| %>
+            <tr>
+              <td><%= bounty.name %></td>
+              <td><%= bounty.email %></td>
+              <td><%= bounty.found? ? "yes" : "nope" %></td>
+
+              <% if bounty.found? %>
+                <td></td>
+                <td> <%= link_to 'Show Where I can find this thing', things_path(searchterm: bounty.name) %> </td>
+              <% else %>
+                <td><%= time_ago_in_words(bounty.created_at) %>
+                <td> <%= link_to 'Found it!', new_thing_path(thing: {name: bounty.name}), {class: 'found'} %> </td>
+               <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
 
-<h2> Open Bounties </h2>
-<table  class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th> Found? </th>
-      <th> Looking since </th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bounties.each do |bounty| %>
-      <tr>
-        <td><%= bounty.name %></td>
-        <td><%= bounty.email %></td>
-        <td><%= bounty.found? ? "yes" : "nope" %></td>
-
-        <% if bounty.found? %>
-          <td></td>
-          <td> <%= link_to 'Show Where I can find this thing', things_path(searchterm: bounty.name) %> </td>
-        <% else %>
-          <td><%= time_ago_in_words(bounty.created_at) %>
-          <td> <%= link_to 'I found this thing!', new_thing_path(thing: {name: bounty.name}) %> </td>
-         <% end %>
-      </tr>
-    <% end %>
-
-
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bounty', new_bounty_path %>
+    </div>
+  </div>
+</div>
