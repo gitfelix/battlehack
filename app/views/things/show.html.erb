@@ -29,7 +29,9 @@
 
   <div class="things_index">
   <p class="thing_name">
-    <%= @thing.name %>
+    <h1>
+      <%= @thing.name %>
+    </h1>
   </p>
 
   <p class="description">
@@ -46,15 +48,19 @@
     <%= @thing.lng %>
   </p>
 
-  <p>
-    <strong>location:</strong>
-    <%= @thing.location %>
-  </p>
+  <% if @thing.location.present? %>
+    <p>
+      <strong>location:</strong>
+      <%= @thing.location %>
+    </p>
+  <% end %>
 
-  <p>
-    <strong>price:</strong>
-    <%= @thing.price %>
-  </p>
+  <% if @thing.price.present? %>
+    <p>
+      <strong>price:</strong>
+      <%= @thing.price %>
+    </p>
+  <% end %>
 
   <p class="thingimage">
     <img src="<%= @thing.image %>" style="max-width: 400px;" />
