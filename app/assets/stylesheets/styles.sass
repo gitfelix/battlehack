@@ -4,6 +4,9 @@
 // Many thanks to SubtlePatterns.com and their designers.
 // The background pattern is CC BY-SA 3.0
 
+.alert 
+  border-radius:    0
+
 .navbar-default
   background: url(/img/background.png) 0 0 repeat
 
@@ -26,17 +29,20 @@
         color:      darken($brand-primary, 15%)
 
   li.alert_header
-    a 
-      font-weight:  700
-      &:hover,
-      &:active
-        color:      $gray
-    
+    span.lg  
+      font-size:    700
+
     .danger
+      margin-top:     11px
+      background:     $white
+      padding:        4px 18px
+      border-radius:  2px
+      +box-shadow($shadow1)    
       color:        $brand-danger
       &:hover,
       &:active
-        color:      darken($brand-danger, 15%)
+        background:   $white
+        color:        darken($brand-danger, 15%)
 
 
 .hidden
@@ -57,7 +63,7 @@ img.logo
 
 #map-canvas-sm
   width: 100%
-  height: 400px  
+  height: 200px  
 
 .index
   float: left
