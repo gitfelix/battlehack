@@ -36,7 +36,7 @@
   </p>
 
   <p class="description">
-    <%= @thing.description %>
+    Available at <%= @thing.description %>
   </p>
 
   <p class="hidden">
@@ -59,7 +59,7 @@
   <% if @thing.price.present? %>
     <p>
       <strong>price:</strong>
-      <%= @thing.price %>
+      <%= number_to_currency(@thing.price, unit: "€") %>
     </p>
   <% end %>
 
