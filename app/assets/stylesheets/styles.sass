@@ -1,11 +1,36 @@
 @import 'variables'
 @import 'bootstrap'
 
+// Many thanks to SubtlePatterns.com and their designers.
+// The background pattern is CC BY-SA 3.0
+
+.navbar-default
+  background: url(/img/background.png) 0 0 repeat
+
+.navbar-right
+  text-transform:   uppercase
+  color:            $gray-dark
+
+  li.separator
+    a 
+      color:        $brand-primary
+      &:hover,
+      &:active
+        color:      $brand-primary  
+
+  li.primary
+    a
+      color:        $brand-primary
+      &:hover,
+      &:active
+        color:      darken($brand-primary, 15%)
+
 .logo
   padding-left: 10px
 
 img.logo
-  width: 240px
+  width: 200px
+  margin-top: -10px
 
 .map
   float: right
@@ -17,3 +42,22 @@ img.logo
   float: left
   width: 33%
   padding-left: 2%
+
+.table
+  max-width:    100%  
+
+// Search
+input.searchform
+  width:            100%
+  padding:          6px 10px
+  font-size:        24px    
+  border-radius:    4px
+  border:           1px solid $gray-light
+  margin-bottom:    24px
+
+  &:focus,
+  &:active
+    border-color:   $gray
+    outline-color:  $white
+    +box-shadow($shadow1)
+

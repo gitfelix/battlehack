@@ -8,11 +8,11 @@
 <div class="index">
   <div class="results">
     <form action="<%= things_path %>" method="get">
-      <label for="">Search for</label>
-      <input name="searchterm" type="text" value="<%= @searchterm %>" >
-      <input type="submit">
+      <input name="searchterm" placeholder="Search..." class="searchform" type="text" value="<%= @searchterm %>" >
+
     </form>
   </div>
+
 
   <script>
     things = [
@@ -38,28 +38,27 @@
     <% end %>
   <% else %>
 
-  <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Store</th>
-          <th>Price</th>
-       </tr>
-     </thead>
-
-      <tbody>
-        <% @things.each do |thing| %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= link_to thing.name, thing %></td>
-            <td><%= thing.description %></td>
-            <td><%= 'Price' %></td>
-          </tr>
-        <% end %>
-      </tbody>
-  </table>
+            <th>Name</th>
+            <th>Store</th>
+            <th>Price</th>
+         </tr>
+       </thead>
 
+        <tbody>
+          <% @things.each do |thing| %>
+            <tr>
+              <td><%= link_to thing.name, thing %></td>
+              <td><%= thing.description %></td>
+              <td><%= 'Price' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
   <% end %>
 
-  <%= link_to 'New Thing', new_thing_path %>
-  <%= link_to 'Bounties', bounties_path %>
 </div>  <!-- end things -->
