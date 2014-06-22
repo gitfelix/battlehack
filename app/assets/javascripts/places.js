@@ -1,7 +1,7 @@
 function initialize() {
     var mapOptions = {
-      center: new google.maps.LatLng(53, 13),
-      zoom: 13
+      center: new google.maps.LatLng(52, 13),
+      zoom: 12
     };
     
     map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -9,7 +9,8 @@ function initialize() {
     
     things.forEach(function(thing){
       position = new google.maps.LatLng(thing.lat,thing.lng)
-      add_marker(position, thing.name, thing.imgpath, thing.url, null)
+      iconimage = getRandomImage(1,5)
+      add_marker(position, thing.name, thing.imgpath, thing.url, iconimage)
      })
 
     if (things.length == 1) {
@@ -21,13 +22,23 @@ function initialize() {
     console.log("yo")
 }
 
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min  
+}
+
+
+function getRandomImage(min, max) {
+  number = Math.floor(Math.random() * (max - min + 1)) + min;
+  return '/img/icon' + number + '.png'
+}
+
 
 function start_map() {
   google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 
-function add_marker(center, title, imgpath, url, category) {
+function add_marker(center, title, imgpath, url, iconimage) {
     var content = '<a href="'+url+'" id="content">'+
       '<h4 id="firstHeading" class="firstHeading">'+title+'</h4>'+
       '<div id="bodyContent">'+
@@ -35,7 +46,7 @@ function add_marker(center, title, imgpath, url, category) {
       '</div>'+
       '</div>';
     
-    var image = '/img/cat_food.png';
+    var image = iconimage;
 
     var infowindow = new google.maps.InfoWindow({
       content: content,
