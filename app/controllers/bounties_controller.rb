@@ -29,7 +29,7 @@ class BountiesController < ApplicationController
 
     respond_to do |format|
       if @bounty.save
-        format.html { redirect_to @bounty, notice: 'Bounty was successfully created.' }
+        format.html { redirect_to things_path, notice: 'Bounty was successfully created.' }
         format.json { render :show, status: :created, location: @bounty }
       else
         format.html { render :new }

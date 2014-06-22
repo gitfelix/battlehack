@@ -29,12 +29,16 @@
   </script>
 
   <% if @things.empty? %>
-    <%= "None found - yet! Create a bounty for hunters!" %>
+    <div class="notice_bounty">
+      <p><strong><%= "None found - yet!" %></strong></p>
+      <p><%= "Unleash the kraken and we'll notify you when someone finds it:" %></p>
+    </div>
     <%= form_for(Bounty.new(name: @searchterm)) do |f| %>
       <%= f.hidden_field :name %>
-      <%= f.label :email %><br>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, {class: "emailbounty", placeholder: "Your email address"} %>
+      <div class="bountysubmit">
       <%= f.submit %>
+      </div>
     <% end %>
   <% else %>
 
@@ -122,6 +126,7 @@
                       <td><%= 'Price' %></td>
                     </tr>
                   <% end %>
+                <% end %>  
                 </tbody>
             </table>
         </div> <!-- end table -->
@@ -129,6 +134,5 @@
     </div> <!-- end row -->    
   </div> <!-- end container -->  
 
-        <% end %>  
   
 </div> <!-- end mobile -->
