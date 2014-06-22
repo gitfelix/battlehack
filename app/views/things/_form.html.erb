@@ -19,12 +19,20 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+
   <div class="field">
-    <%= f.hidden_field :lat %>
+    <%= radio_button_tag :location, "here", true%>
+    <%= label_tag :location_here, "here" %><br>
+    <%= radio_button_tag :location, "elsewhere" %>  
+    <%= label_tag :location_elsewhere, "elsewhere" %><br>
   </div>
+
   <div class="field">
-    <%= f.hidden_field :lng %>
+  <%= f.text_field :location %>
   </div>
+
+  <%= f.hidden_field :lng %>
+  <%= f.hidden_field :lat %>
   <div class="field">
     <%= f.label :image %><br>
     <%= f.file_field :image %>
