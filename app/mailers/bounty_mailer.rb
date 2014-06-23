@@ -1,5 +1,5 @@
 class BountyMailer < ActionMailer::Base
-  default from: "itemfound@hotnobz.com"
+  default from: "itemfound@.com"
 
   def bounty_found(bounty, thing)
     @bounty = bounty
