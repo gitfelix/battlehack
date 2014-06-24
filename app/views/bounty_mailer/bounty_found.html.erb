@@ -8,6 +8,12 @@
     <p>
         To check out the Thing you were looking for <%= link_to 'click here!', thing_url(@thing) %>
     </p>
+    <% if @bounty.preapproval_key.present? %>
+    <p>
+        If this is what you were looking for, give your reward to the bounty hunter by <%= link_to 'clicking here!', payment_test_pay_bounty_url(bounty_id: @bounty.id) %>
+
+    </p>
+    <% end %>
     <p>Thanks for using HobNob and have a great day!</p>
   </body>
 </html>

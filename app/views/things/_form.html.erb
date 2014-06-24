@@ -26,6 +26,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
     <%= radio_button_tag :location, "here", true%>
     <%= label_tag :location_here, "here" %><br>
     <%= radio_button_tag :location, "elsewhere" %>  

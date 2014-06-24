@@ -26,17 +26,19 @@ class BountiesController < ApplicationController
   # POST /bounties.json
   def create
     @bounty = Bounty.new(bounty_params)
-
-    respond_to do |format|
-      if @bounty.save
-        format.html { redirect_to things_path, notice: 'Bounty was successfully created.' }
-        format.json { render :show, status: :created, location: @bounty }
-      else
-        format.html { render :new }
-        format.json { render json: @bounty.errors, status: :unprocessable_entity }
+   
+    if @bounty.save
+      if params[:bounty][:reward].present?
+        redirect_to payment_test_create_paypal_bounty_path(bounty_id: @bounty.id)
+      else 
+        redirect_to @bounty, notice: 'Bounty was successfully created.' 
       end
+    else
+      render :new 
     end
   end
+
+
 
   # PATCH/PUT /bounties/1
   # PATCH/PUT /bounties/1.json
@@ -70,6 +72,6 @@ class BountiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bounty_params
-      params.require(:bounty).permit(:name, :email)
+      params.require(:bounty).permit(:name, :email, :preapproval_key, :reward)
     end
 end

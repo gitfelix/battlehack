@@ -4,13 +4,14 @@ class PaymentTestController < ApplicationController
   def create_paypal_bounty
 
   @api = PayPal::SDK::AdaptivePayments::API.new
-
+  session[:bounty_id] = params[:bounty_id]
+  bounty = Bounty.find(session[:bounty_id])
   # Build request object
   @preapproval = @api.build_preapproval({
     :cancelUrl => "https://paypal-sdk-samples.herokuapp.com/adaptive_payments/preapproval",
     :currencyCode => "EUR",
-    :maxTotalAmountOfAllPayments => 20.0,
-    :returnUrl => "http://localhost:3000/payment_test/pay_bounty",
+    :maxTotalAmountOfAllPayments => bounty.reward,
+    :returnUrl => "http://localhost:3000/",
     :ipnNotificationUrl => "https://paypal-sdk-samples.herokuapp.com/adaptive_payments/ipn_notify",
     :startingDate => "#{Time.now}" })
 
@@ -19,7 +20,10 @@ class PaymentTestController < ApplicationController
 
   # Access Response
     if @preapproval_response.success?
-       session[:preapprovalkey] = @preapproval_response.preapprovalKey
+      session[:preapprovalkey] = @preapproval_response.preapprovalKey
+      
+      bounty.update_attribute(:preapproval_key, @preapproval_response.preapprovalKey)
+
         redirect_to "https://www.sandbox.paypal.com/webscr?cmd=_ap-preapproval&preapprovalkey=#{@preapproval_response.preapprovalKey}"
     else
         raise @preapproval_response.error.inspect
@@ -29,7 +33,8 @@ class PaymentTestController < ApplicationController
 
   def pay_bounty
     @api = PayPal::SDK::AdaptivePayments::API.new
-
+    @bounty = Bounty.find(session[:bounty_id])
+    thing = Thing.where(name: @bounty.name).first
     # Build request object
     @pay = @api.build_pay({
       :actionType => "PAY",
@@ -37,19 +42,22 @@ class PaymentTestController < ApplicationController
       :currencyCode => "EUR",
 
       :ipnNotificationUrl => "https://paypal-sdk-samples.herokuapp.com/adaptive_payments/ipn_notify",
-      :preapprovalKey => session[:preapprovalkey],
+      :preapprovalKey => Bounty.find(session[:bounty_id]).preapproval_key,
       :receiverList => {
         :receiver => [{
-          :amount => 1.0,
-          :email => "platfo_1255612361_per@gmail.com" }] },
+          :amount => @bounty.reward,
+          :email => thing.email }] },
       :senderEmail => "felixweberizer-facilitator@gmail.com",
       :returnUrl => "https://paypal-sdk-samples.herokuapp.com/adaptive_payments/pay",
       })
-
     # Make API call & get response
      @pay_response = @api.pay(@pay)
 
-     raise @pay_response.inspect
+    if @pay_response.success?
+      redirect_to thing, notice: 'Your reward has been transferred to the bounty hunter! Thanks.'
+    else
+      raise "Something went wrong :(" 
+    end
   end
 
 

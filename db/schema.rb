@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622085648) do
+ActiveRecord::Schema.define(version: 20140622113657) do
 
   create_table "bounties", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "found",      default: false
+    t.boolean  "found",           default: false
+    t.string   "preapproval_key"
+    t.integer  "reward"
   end
 
   create_table "test_pictures", force: true do |t|
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140622085648) do
     t.datetime "updated_at"
     t.string   "location"
     t.decimal  "price"
+    t.string   "email"
   end
 
 end
