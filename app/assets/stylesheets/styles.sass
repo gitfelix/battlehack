@@ -4,6 +4,9 @@
 // Many thanks to SubtlePatterns.com and their designers.
 // The background pattern is CC BY-SA 3.0
 
+.alert 
+  border-radius:    0
+
 .navbar-default
   background: url(/img/background.png) 0 0 repeat
 
@@ -25,6 +28,27 @@
       &:active
         color:      darken($brand-primary, 15%)
 
+  li.alert_header
+    span.lg  
+      font-size:    700
+
+    .danger
+      margin-top:     11px
+      margin-right:   16px
+      background:     $white
+      padding:        4px 18px
+      border-radius:  2px
+      +box-shadow($shadow1)    
+      color:        $brand-danger
+      &:hover,
+      &:active
+        background:   $white
+        color:        darken($brand-danger, 15%)
+
+
+.hidden
+  display:      none
+
 .logo
   padding-left: 10px
 
@@ -40,7 +64,7 @@ img.logo
 
 #map-canvas-sm
   width: 100%
-  height: 400px  
+  height: 200px  
 
 .index
   float: left
@@ -131,7 +155,11 @@ input[type="submit"]
 
 input.emailbounty
 
-
+// Things
+.thing_name 
+  font-size:        $font-size-large
+  font-weight:      700
+  border-bottom:    2px solid $brand-primary
 
 // Bounties
 a.found

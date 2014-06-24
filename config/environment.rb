@@ -1,7 +1,7 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
 
-Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+Rails.application.routes.default_url_options[:host] = 'hobnobz.herokuapp.com'
 
 
 # Initialize the Rails application.

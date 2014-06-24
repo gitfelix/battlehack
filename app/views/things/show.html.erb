@@ -1,63 +1,68 @@
-<p id="notice"><%= notice %></p>
-
 <script>
   start_map()
 </script>
 
-<div id="map-canvas" class="map"> </div>
 
-<script>
+<div id="map-canvas" class="map maplg hidden-sm hidden-xs"> </div>
 
- things = [
-            {
-              name: "<%= @thing.name %>",
-              lat: "<%= @thing.lat %>",
-              lng: "<%= @thing.lng %>",
-              imgpath: "<%= @thing.image %>",
-              url: "<%= thing_path(@thing) %>"
-            },
-    ]
-
-
-</script>
-
-<div class="things_index">
-<p>
-  <strong>Name:</strong>
-  <%= @thing.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @thing.description %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @thing.lat %>
-</p>
-
-<p>
-  <strong>Lng:</strong>
-  <%= @thing.lng %>
-</p>
-
-<p>
-  <strong>location:</strong>
-  <%= @thing.location %>
-</p>
-
-<p>
-  <strong>price:</strong>
-  <%= @thing.price %>
-</p>
-
-<p>
-  <strong>Image:</strong> <br>
-  <img src=<%= @thing.image %> style="max-width: 400px;" />
-</p>
+<div class="index hidden">
+  <div class="row">
+      <div class="col-xs-12">
+        <div id="map-canvas-sm" class="map"> </div>
+      </div>
+    </div>
 </div>
 
+<div class="index">
+  <script>
+   things = [
+              {
+                name: "<%= @thing.name %>",
+                lat: "<%= @thing.lat %>",
+                lng: "<%= @thing.lng %>",
+                imgpath: "<%= @thing.image %>",
+                url: "<%= thing_path(@thing) %>"
+              },
+      ]
 
-<%= link_to 'Edit', edit_thing_path(@thing) %> |
-<%= link_to 'Back', things_path %>
+
+  </script>
+
+  <div class="things_index">
+  <p class="thing_name">
+      <%= @thing.name %>
+  </p>
+
+  <p class="description">
+    Available at <%= @thing.description %>
+  </p>
+
+  <p class="hidden">
+    <strong>Lat:</strong>
+    <%= @thing.lat %>
+  </p>
+
+  <p class="hidden">
+    <strong>Lng:</strong>
+    <%= @thing.lng %>
+  </p>
+
+  <% if @thing.location.present? %>
+    <p>
+      <strong>location:</strong>
+      <%= @thing.location %>
+    </p>
+  <% end %>
+
+  <% if @thing.price.present? %>
+    <p>
+      <strong>price:</strong>
+      <%= number_to_currency(@thing.price, unit: "€") %>
+    </p>
+  <% end %>
+
+  <p class="thingimage">
+    <img src="<%= @thing.image %>" style="max-width: 400px;" />
+  </p>
+  </div>
+</div> <!-- end index -->
