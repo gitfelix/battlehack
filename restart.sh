@@ -4,4 +4,4 @@ echo "restarting"
 kill $(cat tmp/pids/server.pid)
 bundle
 rake db:migrate assets:precompile
-nohup rails s &
+nohup rails s -p 2000 &
